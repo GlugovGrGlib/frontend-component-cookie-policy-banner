@@ -9,10 +9,10 @@ import {
   IETF_TAGS_TO_CLOSE_BUTTON_LABEL,
   IETF_TAGS_TO_CONTAINER_ROLE_LABEL,
   IETF_TAGS_TO_LANGUAGE_CODE,
-  getPolicyHTML,
 } from '../constants';
 import {
   getIETFTag,
+  getPolicyHTML,
   getIETFTagFromLanguageCode,
   hasViewedCookieBanner,
   createHasViewedCookieBanner,

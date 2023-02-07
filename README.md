@@ -5,7 +5,18 @@
 [![npm](https://img.shields.io/npm/dt/@edx/frontend-component-cookie-policy-banner.svg)](https://www.npmjs.com/package/@edx/frontend-component-cookie-policy-banner)
 [![license](https://img.shields.io/npm/l/@edx/frontend-component-cookie-policy-banner.svg)](https://github.com/openedx/frontend-component-cookie-policy-banner.svg/blob/master/LICENSE)
 
-We are not accepting public contributions to this repo at this time. 
+We are not accepting public contributions to this repo at this time.
+
+## RG NOTES
+
+This is an RG specific fork of the [cookie policy banner](https://github.com/openedx/frontend-component-cookie-policy-banner) component.
+
+### Known Issues
+
+- Translations are hardcoded for now and have only EN and ES versions. See the [translations how-to doc](https://raccoongang.atlassian.net/wiki/spaces/PROD/pages/3758555186/How-to+Translations) for details.
+- Sync process with the upstream will be complicated according to the quantity of changes. There is an [ongoing work in the upsteam](https://github.com/openedx/wg-frontend/issues/159) aimed at the component refactor though. We're planning to participate there to ease the sync process in the future.
+- As for now, the component usage in the legacy frontend is possible though not tested/recommended. We're going either to unify the behavior of the react-based cookie baner and our theme's banner or adopt the component for the legacy frontend.
+- We're also started the discussion in the community about adding the cookie banner component to the Header component to avoid behavior when the banner isn't shown in any MFE but in the Authn.
 
 ## Introduction
 
