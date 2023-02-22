@@ -1,14 +1,11 @@
 import Cookie from 'universal-cookie';
+import { getConfig } from '@edx/frontend-platform';
 
 import {
   DEFAULT_IETF_TAG,
   IETF_TAGS,
   LANGUAGE_CODE_TO_IETF_TAGS,
   LOCALHOST,
-  COOKIE_POLICY_VIEWED_NAME,
-  LANGUAGE_PREFERENCE_COOKIE_NAME,
-  COOKIE_DOMAIN,
-  COOKIE_NAME_PREFIX,
   IETF_TAGS_TO_BANNER_TEXT,
 } from './constants';
 
@@ -19,13 +16,12 @@ import {
 const getCookieCreationData = (cookieName = null) => {
   let domain;
   let prefix;
-  const name = cookieName || COOKIE_POLICY_VIEWED_NAME;
+  const name = cookieName || getConfig().COOKIE_POLICY_VIEWED_COOKIE_NAME;
   if (window.location.hostname.indexOf(LOCALHOST) >= 0) {
     domain = LOCALHOST;
-    prefix = LOCALHOST;
   } else {
-    domain = COOKIE_DOMAIN;
-    prefix = COOKIE_NAME_PREFIX;
+    domain = getConfig().COOKIE_DOMAIN;
+    prefix = getConfig().COOKIE_POLICY_COOKIE_NAME_PREFIX;
   }
   return {
     cookieName: prefix ? `${prefix}-${name}` : name,
@@ -36,8 +32,8 @@ const getCookieCreationData = (cookieName = null) => {
 };
 
 const getIETFTag = () => {
-  const cookie = new Cookie(COOKIE_DOMAIN);
-  const ietfTag = cookie.get(LANGUAGE_PREFERENCE_COOKIE_NAME);
+  const cookie = new Cookie(getConfig().COOKIE_DOMAIN);
+  const ietfTag = cookie.get(getConfig().LANGUAGE_PREFERENCE_COOKIE_NAME);
 
   if (!ietfTag || IETF_TAGS.indexOf(ietfTag) <= -1) {
     return DEFAULT_IETF_TAG;
@@ -66,7 +62,7 @@ const createHasViewedCookieBanner = (cookieName = null) => {
       && !!cookieCreationData.maxAge) {
     return new Cookie().set(
       cookieCreationData.cookieName,
-      true,
+      'dismiss', // for consistency with legacy cookie policy banner
       {
         domain: cookieCreationData.domain,
         path: cookieCreationData.path,
