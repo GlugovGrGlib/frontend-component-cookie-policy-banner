@@ -1,11 +1,6 @@
 import { getConfig } from '@edx/frontend-platform';
 // Read the env variables
-const LMS_BASE_URL = getConfig().LMS_BASE_URL || '';
-const LANGUAGE_PREFERENCE_COOKIE_NAME = getConfig().LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference';
-const COOKIE_DOMAIN = getConfig().SESSION_COOKIE_DOMAIN || '.raccoongang.com';
-const COOKIE_NAME_PREFIX = getConfig().COOKIE_POLICY_NAME_PREFIX || '';
-const COOKIE_POLICY_VIEWED_NAME = getConfig().COOKIE_POLICY_VIEWED_NAME || 'openedx-cookie-policy-viewed';
-const SITE_NAME = getConfig().SITE_NAME || 'Your Platform Name Here';
+const { LMS_BASE_URL, SITE_NAME } = getConfig();
 // end of env vars reading
 
 // general constants
@@ -59,9 +54,5 @@ export {
   IETF_TAGS_TO_LANGUAGE_CODE,
   LANGUAGE_CODE_TO_IETF_TAGS,
   LOCALHOST,
-  COOKIE_POLICY_VIEWED_NAME,
-  LANGUAGE_PREFERENCE_COOKIE_NAME,
-  COOKIE_DOMAIN,
-  COOKIE_NAME_PREFIX,
   COOKIE_POLICY_PAGE_URL,
 };
