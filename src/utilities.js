@@ -1,5 +1,5 @@
 import Cookie from 'universal-cookie';
-import { getConfig } from '@edx/frontend-platform';
+import { ensureConfig, getConfig } from '@edx/frontend-platform';
 
 import {
   DEFAULT_IETF_TAG,
@@ -9,22 +9,22 @@ import {
   IETF_TAGS_TO_BANNER_TEXT,
 } from './constants';
 
+ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN'], 'Cookie Policy Banner component utilities');
+
 // Setting path to '/' to be apply to all subdomains
 // Setting maxAge to 2^31 -1
 // because Number.SAFE_MAX_INTEGER does not get processed properly by the browser
 // nor does the max Date defined in http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1
 const getCookieCreationData = (cookieName = null) => {
   let domain;
-  let prefix;
   const name = cookieName || getConfig().COOKIE_POLICY_VIEWED_COOKIE_NAME;
   if (window.location.hostname.indexOf(LOCALHOST) >= 0) {
     domain = LOCALHOST;
   } else {
-    domain = getConfig().COOKIE_DOMAIN;
-    prefix = getConfig().COOKIE_POLICY_COOKIE_NAME_PREFIX;
+    domain = getConfig().COOKIE_POLICY_COOKIE_DOMAIN;
   }
   return {
-    cookieName: prefix ? `${prefix}-${name}` : name,
+    cookieName: name,
     domain,
     path: '/',
     maxAge: 2147483647,
@@ -32,7 +32,7 @@ const getCookieCreationData = (cookieName = null) => {
 };
 
 const getIETFTag = () => {
-  const cookie = new Cookie(getConfig().COOKIE_DOMAIN);
+  const cookie = new Cookie(getConfig().SESSION_COOKIE_DOMAIN);
   const ietfTag = cookie.get(getConfig().LANGUAGE_PREFERENCE_COOKIE_NAME);
 
   if (!ietfTag || IETF_TAGS.indexOf(ietfTag) <= -1) {
