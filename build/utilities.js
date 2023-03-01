@@ -1,6 +1,7 @@
 import Cookie from 'universal-cookie';
-import { getConfig } from '@edx/frontend-platform';
+import { ensureConfig, getConfig } from '@edx/frontend-platform';
 import { DEFAULT_IETF_TAG, IETF_TAGS, LANGUAGE_CODE_TO_IETF_TAGS, LOCALHOST, IETF_TAGS_TO_BANNER_TEXT } from './constants';
+ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN'], 'Cookie Policy Banner component utilities');
 
 // Setting path to '/' to be apply to all subdomains
 // Setting maxAge to 2^31 -1
@@ -9,23 +10,21 @@ import { DEFAULT_IETF_TAG, IETF_TAGS, LANGUAGE_CODE_TO_IETF_TAGS, LOCALHOST, IET
 var getCookieCreationData = function getCookieCreationData() {
   var cookieName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var domain;
-  var prefix;
   var name = cookieName || getConfig().COOKIE_POLICY_VIEWED_COOKIE_NAME;
   if (window.location.hostname.indexOf(LOCALHOST) >= 0) {
     domain = LOCALHOST;
   } else {
-    domain = getConfig().COOKIE_DOMAIN;
-    prefix = getConfig().COOKIE_POLICY_COOKIE_NAME_PREFIX;
+    domain = getConfig().COOKIE_POLICY_COOKIE_DOMAIN;
   }
   return {
-    cookieName: prefix ? "".concat(prefix, "-").concat(name) : name,
+    cookieName: name,
     domain: domain,
     path: '/',
     maxAge: 2147483647
   };
 };
 var getIETFTag = function getIETFTag() {
-  var cookie = new Cookie(getConfig().COOKIE_DOMAIN);
+  var cookie = new Cookie(getConfig().SESSION_COOKIE_DOMAIN);
   var ietfTag = cookie.get(getConfig().LANGUAGE_PREFERENCE_COOKIE_NAME);
   if (!ietfTag || IETF_TAGS.indexOf(ietfTag) <= -1) {
     return DEFAULT_IETF_TAG;

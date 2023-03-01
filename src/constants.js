@@ -1,4 +1,7 @@
-import { getConfig } from '@edx/frontend-platform';
+import { ensureConfig, getConfig } from '@edx/frontend-platform';
+
+ensureConfig(['LMS_BASE_URL', 'SITE_NAME'], 'Cookie Policy Banner component constants');
+
 // Read the env variables
 const { LMS_BASE_URL, SITE_NAME } = getConfig();
 // end of env vars reading

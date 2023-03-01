@@ -17,16 +17,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 import React, { Component } from 'react';
 import { StatusAlert } from '@edx/paragon';
 import PropTypes from 'prop-types';
-import { APP_CONFIG_INITIALIZED, ensureConfig, mergeConfig, subscribe } from '@edx/frontend-platform';
+import { APP_CONFIG_INITIALIZED, mergeConfig, subscribe } from '@edx/frontend-platform';
 import { ENGLISH_IETF_TAG, SPANISH_IETF_TAG, IETF_TAGS_TO_CLOSE_BUTTON_LABEL, IETF_TAGS_TO_CONTAINER_ROLE_LABEL, IETF_TAGS_TO_LANGUAGE_CODE } from '../constants';
 import { getIETFTag, getPolicyHTML, getIETFTagFromLanguageCode, hasViewedCookieBanner, createHasViewedCookieBanner } from '../utilities';
-ensureConfig(['LMS_BASE_URL', 'SITE_NAME'], 'Cookie Policy Banner component');
 subscribe(APP_CONFIG_INITIALIZED, function () {
   mergeConfig({
     LANGUAGE_PREFERENCE_COOKIE_NAME: process.env.LANGUAGE_PREFERENCE_COOKIE_NAME || 'openedx-language-preference',
-    COOKIE_DOMAIN: process.env.COOKIE_DOMAIN || '.raccoongang.com',
-    COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status',
-    COOKIE_POLICY_COOKIE_NAME_PREFIX: process.env.COOKIE_POLICY_COOKIE_NAME_PREFIX || ''
+    COOKIE_POLICY_COOKIE_DOMAIN: process.env.COOKIE_POLICY_COOKIE_DOMAIN,
+    COOKIE_POLICY_VIEWED_COOKIE_NAME: process.env.COOKIE_POLICY_VIEWED_COOKIE_NAME || 'cookieconsent_status'
   }, 'Cookie Policy Banner additional config');
 });
 var CookieBanner = /*#__PURE__*/function (_Component) {
