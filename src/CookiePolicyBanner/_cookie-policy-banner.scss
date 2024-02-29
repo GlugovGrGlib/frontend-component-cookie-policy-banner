@@ -12,6 +12,7 @@ $small-font-size: 14px;
 .edx-cookie-banner-wrapper {
   background: $cookie-banner-background-color;
   box-sizing: border-box;
+  z-index: 5;
 
   /** Base Styles - start **/
   text-align: left;
