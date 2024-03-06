@@ -8,6 +8,9 @@ and this project adheres to customized Semantic Versioning e.g.: `quince-rg.1`
 
 [Unreleased]
 ************
+Fixed:
+======
+* Correct the z-index, fonts and paddings of the cookie banner [RGOeX-26418]
 
 Added:
 =====
