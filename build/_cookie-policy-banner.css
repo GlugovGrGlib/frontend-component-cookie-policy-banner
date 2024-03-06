@@ -1,16 +1,17 @@
 .edx-cookie-banner-wrapper {
   background: #f2f8fd;
   box-sizing: border-box;
+  z-index: 5;
   /** Base Styles - start **/
   text-align: left;
   line-height: 1.5;
-  font-family: Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif !important;
   font-size: 1rem;
   font-weight: 400;
   /** Base Styles - end **/ }
   .edx-cookie-banner-wrapper .alert {
     position: relative;
-    padding: 8px 20px; }
+    padding: 8px 20px !important; }
   .edx-cookie-banner-wrapper .alert-dismissible .close {
     position: absolute;
     top: 0;
