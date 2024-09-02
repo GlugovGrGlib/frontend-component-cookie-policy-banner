@@ -75,12 +75,12 @@ describe('CookiePolicyBanner', function () {
   });
   it('empty component when banner has already been viewed', function () {
     isOpen = false;
-    mountedBanner = mount( /*#__PURE__*/React.createElement(CookiePolicyBanner, props));
+    mountedBanner = mount(/*#__PURE__*/React.createElement(CookiePolicyBanner, props));
     isClosedBanner();
   });
   it('banner component when open', function () {
     isOpen = true;
-    mountedBanner = mount( /*#__PURE__*/React.createElement(CookiePolicyBanner, props));
+    mountedBanner = mount(/*#__PURE__*/React.createElement(CookiePolicyBanner, props));
     isOpenBanner();
   });
   it('toggles banner closed', function () {
@@ -89,7 +89,7 @@ describe('CookiePolicyBanner', function () {
     props = {
       onClose: onClose
     };
-    mountedBanner = mount( /*#__PURE__*/React.createElement(CookiePolicyBanner, props));
+    mountedBanner = mount(/*#__PURE__*/React.createElement(CookiePolicyBanner, props));
     isOpenBanner();
     mountedBanner.find(StatusAlert).prop('onClose')();
     isClosedBanner();
