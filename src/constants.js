@@ -8,7 +8,7 @@ const { LMS_BASE_URL, SITE_NAME } = getConfig();
 
 // general constants
 const LOCALHOST = 'localhost';
-const COOKIE_POLICY_PAGE_URL = new URL('/cookies', LMS_BASE_URL);
+const COOKIE_POLICY_PAGE_URL = `${LMS_BASE_URL}/cookies`;
 // end general constants
 
 // i18n related constants
@@ -46,10 +46,27 @@ const LANGUAGE_CODE_TO_IETF_TAGS = Object.freeze({
 });
 // end of i18n constants
 
+const getPolicyHTML = (tag, overrideText = {}) => {
+  if (overrideText[tag]) {
+    return overrideText[tag];
+  }
+
+  const linkClose = '</a>';
+
+  if (tag === SPANISH_IETF_TAG) {
+    const linkOpen = '<a href="https://edx.org/es/edx-privacy-policy" class="policy-link" target = "_blank">';
+    return `edX y sus Miembros usan cookies y otras tecnologías de seguimiento para fines de rendimiento, análisis y marketing. Al usar este sitio web, aceptas este uso. Obtén más información sobre estas tecnologías en la ${linkOpen}Política de privacidad${linkClose}.`;
+  }
+
+  const linkOpen = '<a href="https://edx.org/edx-privacy-policy" class="policy-link" target = "_blank">';
+  return `edX and its Members use cookies and other tracking technologies for performance, analytics, and marketing purposes. By using this website, you accept this use. Learn more about these technologies in the ${linkOpen}Privacy Policy${linkClose}.`;
+};
+
 export {
   ENGLISH_IETF_TAG,
   SPANISH_IETF_TAG,
   DEFAULT_IETF_TAG,
+  ENGLISH_LANGUAGE_CODE,
   IETF_TAGS,
   IETF_TAGS_TO_CONTAINER_ROLE_LABEL,
   IETF_TAGS_TO_CLOSE_BUTTON_LABEL,
@@ -58,4 +75,5 @@ export {
   LANGUAGE_CODE_TO_IETF_TAGS,
   LOCALHOST,
   COOKIE_POLICY_PAGE_URL,
+  getPolicyHTML,
 };

@@ -14,6 +14,7 @@ Fixed:
 
 Added:
 =====
+* Update the component to be compatible with redwood release (RGOeX-26785)
 * Added z-index to the cookie banner wrapper (RGOeX-26418)
 
 [palm-rg.1] 2023-11-03 (Palm RG release)

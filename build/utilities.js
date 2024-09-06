@@ -1,9 +1,9 @@
 import Cookie from 'universal-cookie';
 import { ensureConfig, getConfig } from '@edx/frontend-platform';
 import { DEFAULT_IETF_TAG, IETF_TAGS, LANGUAGE_CODE_TO_IETF_TAGS, LOCALHOST, IETF_TAGS_TO_BANNER_TEXT } from './constants';
-ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN'], 'Cookie Policy Banner component utilities');
+ensureConfig(['SESSION_COOKIE_DOMAIN', 'COOKIE_POLICY_COOKIE_DOMAIN', 'COOKIE_POLICY_VIEWED_COOKIE_NAME'], 'Cookie Policy Banner component utilities');
 
-// Setting path to '/' to be apply to all subdomains
+// Setting path to '/' to be applied to all subdomains
 // Setting maxAge to 2^31 -1
 // because Number.SAFE_MAX_INTEGER does not get processed properly by the browser
 // nor does the max Date defined in http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1
