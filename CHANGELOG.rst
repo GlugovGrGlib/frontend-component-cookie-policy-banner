@@ -10,6 +10,7 @@ and this project adheres to customized Semantic Versioning e.g.: `quince-rg.1`
 ************
 Fixed:
 ======
+* Added position: relative property for correct z-index behavior on different MFEs [RGOeX-26826]
 * Correct the z-index, fonts and paddings of the cookie banner [RGOeX-26418]
 
 Added:
